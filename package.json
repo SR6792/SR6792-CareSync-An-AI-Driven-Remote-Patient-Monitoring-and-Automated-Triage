@@ -1,0 +1,28 @@
+{
+  "name": "caresync",
+  "version": "1.0.0",
+  "description": "\"# SR6792-CareSync-An-AI-Driven-Remote-Patient-Monitoring-and-Automated-Triage\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SR6792/SR6792-CareSync-An-AI-Driven-Remote-Patient-Monitoring-and-Automated-Triage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SR6792/SR6792-CareSync-An-AI-Driven-Remote-Patient-Monitoring-and-Automated-Triage/issues"
+  },
+  "homepage": "https://github.com/SR6792/SR6792-CareSync-An-AI-Driven-Remote-Patient-Monitoring-and-Automated-Triage#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mongodb": "^7.5.0",
+    "mongoose": "^9.9.2",
+    "port": "^0.8.1"
+  }
+}
