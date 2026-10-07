@@ -81,16 +81,12 @@ app.post("/login",async(req,res)=>{
 
   }
 })
-//ML PART
+// ML PART: Stroke Risk Prediction
 app.post('/api/predict', (req, res) => {
-  const { age, bmi } = req.body;
+  const payload = JSON.stringify(req.body || {});
 
-  if (age === undefined || bmi === undefined) {
-    return res.status(400).json({ error: "Please provide both age and bmi." });
-  }
-
-  // Execute predict.py with age and bmi as CLI arguments
-  const pythonProcess = spawn('python', ['predict.py', age, bmi]);
+  // Execute predict.py with JSON payload as CLI argument
+  const pythonProcess = spawn('python', ['predict.py', payload]);
 
   let resultData = '';
   let errorData = '';
@@ -106,7 +102,7 @@ app.post('/api/predict', (req, res) => {
   pythonProcess.on('close', (code) => {
     if (code !== 0) {
       console.error(`Python error: ${errorData}`);
-      return res.status(500).json({ error: "Prediction process failed" });
+      return res.status(500).json({ error: "Prediction process failed", details: errorData });
     }
 
     try {

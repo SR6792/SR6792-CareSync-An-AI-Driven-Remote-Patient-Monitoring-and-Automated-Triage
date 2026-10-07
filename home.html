@@ -3,33 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareSync | AI Stroke Risk Assessment</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="home.css">
-    <!-- Include Raphaël (Dependency for JustGage) -->
+    <!-- JustGage & Raphaël Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
-    <!-- Include JustGage -->
     <script src="https://cdn.jsdelivr.net/npm/justgage@1.3.5/justgage.min.js"></script>
     <script src="home.js" defer></script>
-    <title>Home</title>
 </head>
 <body>
-    <nav class="nav1">
-        <h1>CareSync</h1>    
-    </nav>
-    <div>
-        <div class="div1">
-            <div class="f1">
-                <label>Age</label>
-                <input type="text" class="age">
-                <label>BMI</label>
-                <input type="text" class="bmi">
-                <button class="btn1">Submit</button>
-            </div>
-            <div class="div2">
-                <h1>Predicted Result</h1>
-                <p class="p1"></p>
-                <div id="gauge" class="bar"></div>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-icon">🧠</div>
+            <div class="logo-text">
+                <h1>CareSync</h1>
+                <span class="sub-text">AI Stroke Risk & Triage</span>
             </div>
         </div>
-    </div>
+        <div class="nav-links">
+            <span class="dataset-badge">Stroke Prediction Model</span>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <div class="preset-bar">
+            <span class="preset-label">Quick Test Profiles:</span>
+            <button type="button" class="preset-btn low-risk" id="btnPresetLow">Fill Sample Low Risk</button>
+            <button type="button" class="preset-btn high-risk" id="btnPresetHigh">Fill Sample High Risk</button>
+        </div>
+
+        <div class="main-grid">
+            <!-- Left: Clinical Input Form -->
+            <div class="card form-card">
+                <div class="card-header">
+                    <h2>Patient Clinical Metrics</h2>
+                    <p>Enter patient clinical parameters for automated ML stroke risk analysis</p>
+                </div>
+                <form id="predictionForm" class="clinical-form">
+                    <!-- Section 1: Demographics & Vitals -->
+                    <div class="form-section">
+                        <h3 class="section-title">1. Demographics & Vitals</h3>
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label for="age">Age (years)</label>
+                                <input type="number" id="age" class="age" min="1" max="120" placeholder="e.g. 55" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="sex">Sex</label>
+                                <select id="sex" class="sex" required>
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="trtbps">Resting Blood Pressure (mmHg)</label>
+                                <input type="number" id="trtbps" class="trtbps" min="50" max="250" placeholder="e.g. 130" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="thalachh">Max Heart Rate (bpm)</label>
+                                <input type="number" id="thalachh" class="thalachh" min="50" max="230" placeholder="e.g. 150" required>
+                            </div>
+                            <div class="input-group full-width">
+                                <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+                                <select id="fbs" class="fbs" required>
+                                    <option value="0">No (&le; 120 mg/dl)</option>
+                                    <option value="1">Yes (&gt; 120 mg/dl)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Symptoms & ECG -->
+                    <div class="form-section">
+                        <h3 class="section-title">2. Symptoms & Diagnostic History</h3>
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label for="cp">Chest Pain Type (CP)</label>
+                                <select id="cp" class="cp" required>
+                                    <option value="0">0: Typical Angina</option>
+                                    <option value="1">1: Atypical Angina</option>
+                                    <option value="2">2: Non-Anginal Pain</option>
+                                    <option value="3">3: Asymptomatic</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="exng">Exercise Induced Angina</label>
+                                <select id="exng" class="exng" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="input-group full-width">
+                                <label for="restecg">Resting ECG Results</label>
+                                <select id="restecg" class="restecg" required>
+                                    <option value="0">0: Normal</option>
+                                    <option value="1">1: ST-T Wave Abnormality</option>
+                                    <option value="2">2: Left Ventricular Hypertrophy</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Lab & Exercise Diagnostics -->
+                    <div class="form-section">
+                        <h3 class="section-title">3. Lab & Vascular Diagnostics</h3>
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label for="chol">Cholesterol (mg/dl)</label>
+                                <input type="number" id="chol" class="chol" min="100" max="600" placeholder="e.g. 240" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="oldpeak">ST Depression (Oldpeak)</label>
+                                <input type="number" step="0.1" id="oldpeak" class="oldpeak" min="0" max="10" placeholder="e.g. 1.0" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="slp">Slope of ST Segment</label>
+                                <select id="slp" class="slp" required>
+                                    <option value="0">0: Upsloping</option>
+                                    <option value="1">1: Flat</option>
+                                    <option value="2">2: Downsloping</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="caa">Major Vessels Fluoroscopy (0-4)</label>
+                                <select id="caa" class="caa" required>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="input-group full-width">
+                                <label for="thall">Thalassemia Rate</label>
+                                <select id="thall" class="thall" required>
+                                    <option value="2">2: Normal</option>
+                                    <option value="1">1: Fixed Defect</option>
+                                    <option value="3">3: Reversible Defect</option>
+                                    <option value="0">0: Null / Baseline</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn1 submit-btn">Analyze Stroke Risk</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right: Results & Gauge Card -->
+            <div class="card result-card">
+                <div class="card-header">
+                    <h2>AI Triage Analysis</h2>
+                    <p>Machine Learning Stroke Risk Assessment Model</p>
+                </div>
+                <div class="result-content">
+                    <div class="gauge-wrapper">
+                        <div id="gauge" class="bar"></div>
+                    </div>
+                    
+                    <div class="risk-badge-container">
+                        <span id="riskBadge" class="risk-badge placeholder">Awaiting Input</span>
+                        <div class="risk-score" id="riskScore">--% stroke risk</div>
+                    </div>
+
+                    <p class="p1 result-summary">Fill out the clinical metric form and click "Analyze Stroke Risk" to run prediction.</p>
+                    
+                    <div class="triage-box" id="triageBox">
+                        <h4>Automated Triage Advisory</h4>
+                        <p id="triageRecommendation">The CareSync AI prediction model analyzes patient clinical parameters to calculate raw stroke risk probability and qualitative risk classification.</p>
+                    </div>
+
+                    <p class="disclaimer-text" id="disclaimerText">This tool is for educational/demonstration use only and does not replace consultation with a physician.</p>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
+

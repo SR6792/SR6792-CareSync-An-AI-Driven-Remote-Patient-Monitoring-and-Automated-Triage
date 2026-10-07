@@ -1,0 +1,16 @@
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+node_modules/
+npm-debug.log
+.antigravity/
+.dockerignore
+*.csv
+*.sqlite
+*.db
