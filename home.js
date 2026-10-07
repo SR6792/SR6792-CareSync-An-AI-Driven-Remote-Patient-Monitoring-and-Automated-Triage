@@ -35,15 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Preset data handlers for real Kaggle Stroke Dataset
     const lowRiskProfile = {
-        age: 35, gender: "Female", hypertension: "0", heart_disease: "0",
+        age: 25, gender: "Female", hypertension: "0", heart_disease: "0",
         ever_married: "No", work_type: "Private", Residence_type: "Urban",
-        avg_glucose_level: 85.2, bmi: 22.5, smoking_status: "never smoked"
+        avg_glucose_level: 85, bmi: 22.0, smoking_status: "never smoked"
     };
 
     const highRiskProfile = {
-        age: 79, gender: "Female", hypertension: "1", heart_disease: "0",
+        age: 78, gender: "Male", hypertension: "1", heart_disease: "1",
         ever_married: "Yes", work_type: "Self-employed", Residence_type: "Rural",
-        avg_glucose_level: 174.12, bmi: 24.0, smoking_status: "never smoked"
+        avg_glucose_level: 178, bmi: 32.0, smoking_status: "smokes"
     };
 
     function populateForm(profile) {
