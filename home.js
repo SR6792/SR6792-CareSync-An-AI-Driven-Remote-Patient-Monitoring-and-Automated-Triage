@@ -33,15 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initGauge(0);
 
-    // Preset data handlers
+    // Preset data handlers for real Kaggle Stroke Dataset
     const lowRiskProfile = {
-        age: 67, sex: "1", cp: "0", trtbps: 160, chol: 286, fbs: "0",
-        restecg: "0", thalachh: 108, exng: "1", oldpeak: 1.5, slp: "1", caa: "3", thall: "2"
+        age: 35, gender: "Female", hypertension: "0", heart_disease: "0",
+        ever_married: "No", work_type: "Private", Residence_type: "Urban",
+        avg_glucose_level: 85.2, bmi: 22.5, smoking_status: "never smoked"
     };
 
     const highRiskProfile = {
-        age: 63, sex: "1", cp: "3", trtbps: 145, chol: 233, fbs: "1",
-        restecg: "0", thalachh: 150, exng: "0", oldpeak: 2.3, slp: "0", caa: "0", thall: "1"
+        age: 79, gender: "Female", hypertension: "1", heart_disease: "0",
+        ever_married: "Yes", work_type: "Self-employed", Residence_type: "Rural",
+        avg_glucose_level: 174.12, bmi: 24.0, smoking_status: "never smoked"
     };
 
     function populateForm(profile) {
@@ -67,18 +69,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const payload = {
             age: parseFloat(document.getElementById("age").value),
-            sex: parseFloat(document.getElementById("sex").value),
-            cp: parseFloat(document.getElementById("cp").value),
-            trtbps: parseFloat(document.getElementById("trtbps").value),
-            chol: parseFloat(document.getElementById("chol").value),
-            fbs: parseFloat(document.getElementById("fbs").value),
-            restecg: parseFloat(document.getElementById("restecg").value),
-            thalachh: parseFloat(document.getElementById("thalachh").value),
-            exng: parseFloat(document.getElementById("exng").value),
-            oldpeak: parseFloat(document.getElementById("oldpeak").value),
-            slp: parseFloat(document.getElementById("slp").value),
-            caa: parseFloat(document.getElementById("caa").value),
-            thall: parseFloat(document.getElementById("thall").value)
+            gender: document.getElementById("gender").value,
+            hypertension: parseInt(document.getElementById("hypertension").value),
+            heart_disease: parseInt(document.getElementById("heart_disease").value),
+            ever_married: document.getElementById("ever_married").value,
+            work_type: document.getElementById("work_type").value,
+            Residence_type: document.getElementById("Residence_type").value,
+            avg_glucose_level: parseFloat(document.getElementById("avg_glucose_level").value),
+            bmi: parseFloat(document.getElementById("bmi").value),
+            smoking_status: document.getElementById("smoking_status").value
         };
 
         submitBtn.disabled = true;
@@ -133,4 +132,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
 

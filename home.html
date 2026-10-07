@@ -45,105 +45,86 @@
                 <form id="predictionForm" class="clinical-form">
                     <!-- Section 1: Demographics & Vitals -->
                     <div class="form-section">
-                        <h3 class="section-title">1. Demographics & Vitals</h3>
+                        <h3 class="section-title">1. Demographics & Medical History</h3>
                         <div class="grid-2">
                             <div class="input-group">
                                 <label for="age">Age (years)</label>
-                                <input type="number" id="age" class="age" min="1" max="120" placeholder="e.g. 55" required>
+                                <input type="number" id="age" class="age" min="1" max="120" placeholder="e.g. 67" required>
                             </div>
                             <div class="input-group">
-                                <label for="sex">Sex</label>
-                                <select id="sex" class="sex" required>
-                                    <option value="1">Male</option>
-                                    <option value="0">Female</option>
+                                <label for="gender">Gender</label>
+                                <select id="gender" class="gender" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label for="trtbps">Resting Blood Pressure (mmHg)</label>
-                                <input type="number" id="trtbps" class="trtbps" min="50" max="250" placeholder="e.g. 130" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="thalachh">Max Heart Rate (bpm)</label>
-                                <input type="number" id="thalachh" class="thalachh" min="50" max="230" placeholder="e.g. 150" required>
-                            </div>
-                            <div class="input-group full-width">
-                                <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
-                                <select id="fbs" class="fbs" required>
-                                    <option value="0">No (&le; 120 mg/dl)</option>
-                                    <option value="1">Yes (&gt; 120 mg/dl)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Section 2: Symptoms & ECG -->
-                    <div class="form-section">
-                        <h3 class="section-title">2. Symptoms & Diagnostic History</h3>
-                        <div class="grid-2">
-                            <div class="input-group">
-                                <label for="cp">Chest Pain Type (CP)</label>
-                                <select id="cp" class="cp" required>
-                                    <option value="0">0: Typical Angina</option>
-                                    <option value="1">1: Atypical Angina</option>
-                                    <option value="2">2: Non-Anginal Pain</option>
-                                    <option value="3">3: Asymptomatic</option>
+                                <label for="hypertension">Hypertension History</label>
+                                <select id="hypertension" class="hypertension" required>
+                                    <option value="0">No (Normal Blood Pressure)</option>
+                                    <option value="1">Yes (Diagnosed Hypertension)</option>
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label for="exng">Exercise Induced Angina</label>
-                                <select id="exng" class="exng" required>
+                                <label for="heart_disease">Heart Disease History</label>
+                                <select id="heart_disease" class="heart_disease" required>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Clinical Metrics & Lifestyle -->
+                    <div class="form-section">
+                        <h3 class="section-title">2. Lab Metrics & Lifestyle</h3>
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label for="avg_glucose_level">Avg Glucose Level (mg/dL)</label>
+                                <input type="number" step="0.1" id="avg_glucose_level" class="avg_glucose_level" min="50" max="300" placeholder="e.g. 106.1" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="bmi">BMI (Body Mass Index)</label>
+                                <input type="number" step="0.1" id="bmi" class="bmi" min="10" max="80" placeholder="e.g. 28.5" required>
+                            </div>
                             <div class="input-group full-width">
-                                <label for="restecg">Resting ECG Results</label>
-                                <select id="restecg" class="restecg" required>
-                                    <option value="0">0: Normal</option>
-                                    <option value="1">1: ST-T Wave Abnormality</option>
-                                    <option value="2">2: Left Ventricular Hypertrophy</option>
+                                <label for="smoking_status">Smoking Status</label>
+                                <select id="smoking_status" class="smoking_status" required>
+                                    <option value="never smoked">Never Smoked</option>
+                                    <option value="formerly smoked">Formerly Smoked</option>
+                                    <option value="smokes">Smokes</option>
+                                    <option value="Unknown">Unknown / Not Disclosed</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Section 3: Lab & Exercise Diagnostics -->
+                    <!-- Section 3: Social & Employment Profile -->
                     <div class="form-section">
-                        <h3 class="section-title">3. Lab & Vascular Diagnostics</h3>
+                        <h3 class="section-title">3. Demographics & Work Profile</h3>
                         <div class="grid-2">
                             <div class="input-group">
-                                <label for="chol">Cholesterol (mg/dl)</label>
-                                <input type="number" id="chol" class="chol" min="100" max="600" placeholder="e.g. 240" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="oldpeak">ST Depression (Oldpeak)</label>
-                                <input type="number" step="0.1" id="oldpeak" class="oldpeak" min="0" max="10" placeholder="e.g. 1.0" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="slp">Slope of ST Segment</label>
-                                <select id="slp" class="slp" required>
-                                    <option value="0">0: Upsloping</option>
-                                    <option value="1">1: Flat</option>
-                                    <option value="2">2: Downsloping</option>
+                                <label for="ever_married">Ever Married?</label>
+                                <select id="ever_married" class="ever_married" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
                             </div>
                             <div class="input-group">
-                                <label for="caa">Major Vessels Fluoroscopy (0-4)</label>
-                                <select id="caa" class="caa" required>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
+                                <label for="Residence_type">Residence Type</label>
+                                <select id="Residence_type" class="Residence_type" required>
+                                    <option value="Urban">Urban</option>
+                                    <option value="Rural">Rural</option>
                                 </select>
                             </div>
                             <div class="input-group full-width">
-                                <label for="thall">Thalassemia Rate</label>
-                                <select id="thall" class="thall" required>
-                                    <option value="2">2: Normal</option>
-                                    <option value="1">1: Fixed Defect</option>
-                                    <option value="3">3: Reversible Defect</option>
-                                    <option value="0">0: Null / Baseline</option>
+                                <label for="work_type">Work Type</label>
+                                <select id="work_type" class="work_type" required>
+                                    <option value="Private">Private Employment</option>
+                                    <option value="Self-employed">Self-Employed</option>
+                                    <option value="Govt_job">Government Job</option>
+                                    <option value="children">Child / Dependent</option>
+                                    <option value="Never_worked">Never Worked</option>
                                 </select>
                             </div>
                         </div>

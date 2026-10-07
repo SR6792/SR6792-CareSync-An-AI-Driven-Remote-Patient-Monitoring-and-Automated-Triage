@@ -1,31 +1,26 @@
 import os
 import json
+import uuid
 import pickle
+import threading
+from datetime import datetime, timezone
 import pandas as pd
 from flask import Flask, request, jsonify, send_from_directory
 
 app = Flask(__name__, static_folder='.', static_url_path='')
 app.config['DEBUG'] = False
 
-FEATURE_COLUMNS = [
-    'age', 'sex', 'cp', 'trtbps', 'chol', 'fbs', 
-    'restecg', 'thalachh', 'exng', 'oldpeak', 'slp', 'caa', 'thall'
-]
-
 DEFAULT_VALUES = {
-    'age': 50.0,
-    'sex': 1.0,
-    'cp': 0.0,
-    'trtbps': 120.0,
-    'chol': 200.0,
-    'fbs': 0.0,
-    'restecg': 0.0,
-    'thalachh': 150.0,
-    'exng': 0.0,
-    'oldpeak': 0.0,
-    'slp': 1.0,
-    'caa': 0.0,
-    'thall': 2.0
+    'gender': 'Male',
+    'age': 55.0,
+    'hypertension': 0,
+    'heart_disease': 0,
+    'ever_married': 'Yes',
+    'work_type': 'Private',
+    'Residence_type': 'Urban',
+    'avg_glucose_level': 105.0,
+    'bmi': 28.0,
+    'smoking_status': 'never smoked'
 }
 
 # Helper to load trained ML model
@@ -37,6 +32,38 @@ def load_model():
     return None
 
 model = load_model()
+
+# Task 4: Fail-safe, Asynchronous S3 Session Logging
+def log_prediction_to_s3(log_payload):
+    def async_upload():
+        bucket_name = os.environ.get('S3_LOG_BUCKET')
+        if not bucket_name:
+            return  # S3 logging disabled if bucket name is not configured
+
+        try:
+            import boto3
+            s3_client = boto3.client(
+                's3',
+                region_name=os.environ.get('AWS_REGION', 'us-east-1')
+            )
+            
+            date_str = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+            log_filename = f"logs/{date_str}/prediction_{uuid.uuid4().hex[:8]}.json"
+            
+            s3_client.put_object(
+                Bucket=bucket_name,
+                Key=log_filename,
+                Body=json.dumps(log_payload),
+                ContentType='application/json'
+            )
+        except Exception as err:
+            # Fail-safe: Log error to stdout without interrupting application response
+            print(f"[S3 Logging Non-Fatal Alert]: {err}")
+
+    # Launch background thread for non-blocking execution
+    thread = threading.Thread(target=async_upload)
+    thread.daemon = True
+    thread.start()
 
 @app.route('/')
 def index():
@@ -56,16 +83,20 @@ def predict():
         payload = request.get_json(silent=True) or request.form or {}
         
         data = DEFAULT_VALUES.copy()
-        for k in FEATURE_COLUMNS:
+        for k in DEFAULT_VALUES:
             if k in payload and payload[k] is not None and str(payload[k]).strip() != "":
-                data[k] = float(payload[k])
+                if k in ['age', 'avg_glucose_level', 'bmi']:
+                    data[k] = float(payload[k])
+                elif k in ['hypertension', 'heart_disease']:
+                    data[k] = int(payload[k])
+                else:
+                    data[k] = str(payload[k])
 
-        input_df = pd.DataFrame([[data[col] for col in FEATURE_COLUMNS]], columns=FEATURE_COLUMNS)
+        input_df = pd.DataFrame([data])
 
         if model is not None:
             probability = model.predict_proba(input_df)[0][1]
         else:
-            # Fallback estimation if model pickle not loaded
             probability = 0.5
 
         risk_percentage = round(probability * 100, 2)
@@ -88,6 +119,16 @@ def predict():
             "recommendation": recommendation,
             "disclaimer": disclaimer
         }
+
+        # Task 4: Trigger asynchronous S3 session logging (non-identifying)
+        s3_log_data = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "inputs": data,
+            "stroke_risk_percentage": risk_percentage,
+            "risk_level": risk_level
+        }
+        log_prediction_to_s3(s3_log_data)
+
         return jsonify(response_data), 200
 
     except Exception as e:
