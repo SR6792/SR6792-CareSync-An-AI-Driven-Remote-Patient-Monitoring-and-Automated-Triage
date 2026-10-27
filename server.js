@@ -2,6 +2,7 @@
 const cors = require("cors");
 const mongoose = require("mongoose");
 const express = require("express");
+const fs = require("fs");
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 2000;
@@ -188,6 +189,29 @@ app.post('/api/predict', async (req, res) => {
             error: 'Prediction process failed',
             details: error.message
         });
+    }
+});
+
+app.get('/api/models', (req, res) => {
+    try {
+        const comparisonPath = path.join(__dirname, 'model_comparison.json');
+        const metrics = fs.existsSync(comparisonPath)
+            ? JSON.parse(fs.readFileSync(comparisonPath, 'utf8'))
+            : {};
+        const models = {};
+
+        for (const [key, info] of Object.entries(metrics)) {
+            models[key] = {
+                name: info.name,
+                loaded: Boolean(info.pkl && fs.existsSync(path.join(__dirname, info.pkl))),
+                metrics: info
+            };
+        }
+
+        return res.status(200).json({ models, default: 'lr' });
+    } catch (error) {
+        console.error('Could not load model information:', error);
+        return res.status(500).json({ error: 'Could not load model information.' });
     }
 });
 
