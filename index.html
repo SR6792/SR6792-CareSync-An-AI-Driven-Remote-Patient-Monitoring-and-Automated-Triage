@@ -3,33 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"></link>
-    <script src = "index.js" defer></script>
-    <title>CareSync</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="index.js" defer></script>
+    <title>Create an account | CareSync</title>
 </head>
 <body>
-    <div class="divs">
-        <div class="div1">
-            <div>
-                <h1>Register</h1>
+    <nav class="navbar">
+        <a class="nav-brand" href="index.html" aria-label="CareSync home">
+            <div class="logo-icon" aria-hidden="true">🧠</div>
+            <div class="logo-text">
+                <h1>CareSync</h1>
+                <span class="sub-text">AI Stroke Risk &amp; Triage</span>
             </div>
-            <div class="div3">
-                <!-- <img src="Caresync logo.png" alt="caresync" class="img1"> -->
-                <div class="f1">
-                    <label>Email</label>
-                    <input type="text" class="email1">
-                    <label>Password</label>
-                    <input type="password" class="pass1">
+        </a>
+        <span class="dataset-badge">Secure patient access</span>
+    </nav>
+
+    <main class="login-shell">
+        <section class="login-intro" aria-labelledby="welcome-title">
+            <div class="intro-copy">
+                <span class="eyebrow"><span class="status-dot"></span> CARESYNC HEALTH PLATFORM</span>
+                <h2 id="welcome-title">Care that stays<br><span>in sync.</span></h2>
+                <p>Create your account to access AI-powered stroke risk assessment and triage in one connected workspace.</p>
+            </div>
+            <div class="illustration-wrap">
+                <img src="Public health-pana.svg" alt="Healthcare professional reviewing a patient's health" class="login-illustration">
+            </div>
+            <div class="intro-footer"><span>01</span><span>Connected care. Clearer decisions.</span></div>
+        </section>
+
+        <section class="login-panel" aria-labelledby="register-title">
+            <div class="login-card">
+                <div class="login-heading">
+                    <span class="login-mark" aria-hidden="true">+</span>
+                    <p class="section-kicker">GET STARTED</p>
+                    <h1 id="register-title">Create account</h1>
+                    <p class="login-subtitle">Set up your secure CareSync access.</p>
                 </div>
-                <button class="register_btn">Register</button>
+                <div class="login-fields">
+                    <div class="input-group">
+                        <label for="email">Email address</label>
+                        <input id="email" type="email" class="email1" placeholder="you@example.com" autocomplete="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" class="pass1" placeholder="Create a password" autocomplete="new-password" required>
+                    </div>
+                </div>
+                <button class="login_btn submit-btn register_btn" type="button">Create your account <span aria-hidden="true">→</span></button>
+                <p class="register-prompt">Already have an account? <a href="login.html">Sign in</a></p>
             </div>
-            <div>
-                <p>If already registered <a href="login.html">Login</a></p>
-            </div>
-        </div>
-        <div class="div2">
-            <img src = "Public health-pana.svg" class="img2">
-        </div>
-    </div>
+            <p class="login-legal">Your health information is handled with care.</p>
+        </section>
+    </main>
 </body>
 </html>

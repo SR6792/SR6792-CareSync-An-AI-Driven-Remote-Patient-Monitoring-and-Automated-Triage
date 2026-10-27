@@ -1,0 +1,44 @@
+{
+  "lr": {
+    "name": "Logistic Regression",
+    "pkl": "model_lr.pkl",
+    "train_time_s": 4.342,
+    "accuracy": 73.97,
+    "recall": 80.0,
+    "precision": 13.51,
+    "f1": 23.12,
+    "roc_auc": 83.87,
+    "true_neg": 716,
+    "false_pos": 256,
+    "false_neg": 10,
+    "true_pos": 40
+  },
+  "rf": {
+    "name": "Random Forest",
+    "pkl": "model_rf.pkl",
+    "train_time_s": 0.917,
+    "accuracy": 87.57,
+    "recall": 36.0,
+    "precision": 15.93,
+    "f1": 22.09,
+    "roc_auc": 77.85,
+    "true_neg": 877,
+    "false_pos": 95,
+    "false_neg": 32,
+    "true_pos": 18
+  },
+  "xgb": {
+    "name": "XGBoost",
+    "pkl": "model_xgb.pkl",
+    "train_time_s": 0.738,
+    "accuracy": 71.43,
+    "recall": 70.0,
+    "precision": 11.22,
+    "f1": 19.34,
+    "roc_auc": 78.24,
+    "true_neg": 695,
+    "false_pos": 277,
+    "false_neg": 15,
+    "true_pos": 35
+  }
+}

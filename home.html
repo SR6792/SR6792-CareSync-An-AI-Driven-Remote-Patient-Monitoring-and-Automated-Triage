@@ -20,19 +20,31 @@
             <div class="logo-icon">🧠</div>
             <div class="logo-text">
                 <h1>CareSync</h1>
-                <span class="sub-text">AI Stroke Risk & Triage</span>
+                <span class="sub-text">AI Stroke Risk &amp; Triage</span>
             </div>
         </div>
         <div class="nav-links">
-            <span class="dataset-badge">Stroke Prediction Model</span>
+            <span class="dataset-badge">Multi-Model Stroke Prediction</span>
         </div>
     </nav>
 
     <main class="dashboard-container">
+        <!-- Preset Bar + Model Selector Row -->
         <div class="preset-bar">
             <span class="preset-label">Quick Test Profiles:</span>
             <button type="button" class="preset-btn low-risk" id="btnPresetLow">Fill Sample Low Risk</button>
             <button type="button" class="preset-btn high-risk" id="btnPresetHigh">Fill Sample High Risk</button>
+
+            <!-- Model Selector Dropdown -->
+            <div class="model-selector-group">
+                <label for="modelSelect" class="preset-label">🤖 AI Model:</label>
+                <select id="modelSelect" class="model-select">
+                    <option value="lr">Logistic Regression</option>
+                    <option value="rf">Random Forest</option>
+                    <option value="xgb">XGBoost</option>
+                </select>
+                <span class="model-metrics-pill" id="modelMetricsPill">Loading metrics…</span>
+            </div>
         </div>
 
         <div class="main-grid">
@@ -43,31 +55,32 @@
                     <p>Enter patient clinical parameters for automated ML stroke risk analysis</p>
                 </div>
                 <form id="predictionForm" class="clinical-form">
-                    <!-- Section 1: Demographics & Vitals -->
+
+                    <!-- Section 1: Demographics & Medical History -->
                     <div class="form-section">
-                        <h3 class="section-title">1. Demographics & Medical History</h3>
+                        <h3 class="section-title">1. Demographics &amp; Medical History</h3>
                         <div class="grid-2">
                             <div class="input-group">
                                 <label for="age">Age (years)</label>
-                                <input type="number" id="age" class="age" min="1" max="120" placeholder="e.g. 67" required>
+                                <input type="number" id="age" min="1" max="120" placeholder="e.g. 67" required>
                             </div>
                             <div class="input-group">
                                 <label for="gender">Gender</label>
-                                <select id="gender" class="gender" required>
+                                <select id="gender" required>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
                             <div class="input-group">
                                 <label for="hypertension">Hypertension History</label>
-                                <select id="hypertension" class="hypertension" required>
+                                <select id="hypertension" required>
                                     <option value="0">No (Normal Blood Pressure)</option>
                                     <option value="1">Yes (Diagnosed Hypertension)</option>
                                 </select>
                             </div>
                             <div class="input-group">
                                 <label for="heart_disease">Heart Disease History</label>
-                                <select id="heart_disease" class="heart_disease" required>
+                                <select id="heart_disease" required>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
                                 </select>
@@ -75,51 +88,70 @@
                         </div>
                     </div>
 
-                    <!-- Section 2: Clinical Metrics & Lifestyle -->
+                    <!-- Section 2: Lab Metrics & Lifestyle -->
                     <div class="form-section">
-                        <h3 class="section-title">2. Lab Metrics & Lifestyle</h3>
+                        <h3 class="section-title">2. Lab Metrics &amp; Lifestyle</h3>
                         <div class="grid-2">
                             <div class="input-group">
                                 <label for="avg_glucose_level">Avg Glucose Level (mg/dL)</label>
-                                <input type="number" step="0.1" id="avg_glucose_level" class="avg_glucose_level" min="50" max="300" placeholder="e.g. 106.1" required>
+                                <input type="number" step="0.1" id="avg_glucose_level" min="50" max="300" placeholder="e.g. 106.1" required>
                             </div>
                             <div class="input-group">
                                 <label for="bmi">BMI (Body Mass Index)</label>
-                                <input type="number" step="0.1" id="bmi" class="bmi" min="10" max="80" placeholder="e.g. 28.5" required>
+                                <input type="number" step="0.1" id="bmi" min="10" max="80" placeholder="e.g. 28.5" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="total_cholesterol">Total Cholesterol (mg/dL) <span class="optional-tag">optional</span></label>
+                                <input type="number" id="total_cholesterol" min="50" max="500" step="1" placeholder="e.g. 180">
                             </div>
                             <div class="input-group full-width">
                                 <label for="smoking_status">Smoking Status</label>
-                                <select id="smoking_status" class="smoking_status" required>
+                                <select id="smoking_status" required>
                                     <option value="never smoked">Never Smoked</option>
                                     <option value="formerly smoked">Formerly Smoked</option>
-                                    <option value="smokes">Smokes</option>
+                                    <option value="smokes">Currently Smokes</option>
                                     <option value="Unknown">Unknown / Not Disclosed</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Section 3: Social & Employment Profile -->
+                    <!-- Section 3: Blood Pressure -->
                     <div class="form-section">
-                        <h3 class="section-title">3. Demographics & Work Profile</h3>
+                        <h3 class="section-title">3. Blood Pressure <span class="optional-tag">optional</span></h3>
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label for="systolic_bp">Systolic BP (mmHg)</label>
+                                <input type="number" id="systolic_bp" min="60" max="300" step="1" placeholder="e.g. 120">
+                            </div>
+                            <div class="input-group">
+                                <label for="diastolic_bp">Diastolic BP (mmHg)</label>
+                                <input type="number" id="diastolic_bp" min="30" max="200" step="1" placeholder="e.g. 80">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Social & Work Profile -->
+                    <div class="form-section">
+                        <h3 class="section-title">4. Social &amp; Work Profile</h3>
                         <div class="grid-2">
                             <div class="input-group">
                                 <label for="ever_married">Ever Married?</label>
-                                <select id="ever_married" class="ever_married" required>
+                                <select id="ever_married" required>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
                             </div>
                             <div class="input-group">
                                 <label for="Residence_type">Residence Type</label>
-                                <select id="Residence_type" class="Residence_type" required>
+                                <select id="Residence_type" required>
                                     <option value="Urban">Urban</option>
                                     <option value="Rural">Rural</option>
                                 </select>
                             </div>
                             <div class="input-group full-width">
                                 <label for="work_type">Work Type</label>
-                                <select id="work_type" class="work_type" required>
+                                <select id="work_type" required>
                                     <option value="Private">Private Employment</option>
                                     <option value="Self-employed">Self-Employed</option>
                                     <option value="Govt_job">Government Job</option>
@@ -140,23 +172,46 @@
             <div class="card result-card">
                 <div class="card-header">
                     <h2>AI Triage Analysis</h2>
-                    <p>Machine Learning Stroke Risk Assessment Model</p>
+                    <p id="modelUsedLabel">Machine Learning Stroke Risk Assessment Model</p>
                 </div>
                 <div class="result-content">
                     <div class="gauge-wrapper">
                         <div id="gauge" class="bar"></div>
                     </div>
-                    
+
                     <div class="risk-badge-container">
                         <span id="riskBadge" class="risk-badge placeholder">Awaiting Input</span>
                         <div class="risk-score" id="riskScore">--% stroke risk</div>
                     </div>
 
                     <p class="p1 result-summary">Fill out the clinical metric form and click "Analyze Stroke Risk" to run prediction.</p>
-                    
+                    <p class="supplemental-summary" id="supplementalSummary" hidden></p>
+
                     <div class="triage-box" id="triageBox">
                         <h4>Automated Triage Advisory</h4>
                         <p id="triageRecommendation">The CareSync AI prediction model analyzes patient clinical parameters to calculate raw stroke risk probability and qualitative risk classification.</p>
+                    </div>
+
+                    <!-- Model Comparison Panel -->
+                    <div class="comparison-panel" id="comparisonPanel" hidden>
+                        <h4>📊 Model Comparison (Test Set)</h4>
+                        <table class="comparison-table" id="comparisonTable">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Accuracy</th>
+                                    <th>Recall</th>
+                                    <th>ROC-AUC</th>
+                                    <th>Train Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comparisonBody"></tbody>
+                        </table>
+                        <p class="graph-link-text">
+                            <a href="/static/comparison.png" target="_blank" class="graph-link">📈 View Full Comparison Graph</a>
+                            &nbsp;|&nbsp;
+                            <a href="/static/confusion_matrices.png" target="_blank" class="graph-link">🧩 View Confusion Matrices</a>
+                        </p>
                     </div>
 
                     <p class="disclaimer-text" id="disclaimerText">This tool is for educational/demonstration use only and does not replace consultation with a physician.</p>
@@ -166,4 +221,3 @@
     </main>
 </body>
 </html>
-

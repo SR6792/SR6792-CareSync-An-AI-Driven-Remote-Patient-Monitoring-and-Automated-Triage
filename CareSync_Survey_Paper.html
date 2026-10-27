@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CareSync Survey Paper - IJERA Format</title>
+<style>
+  @page {
+    size: A4;
+    margin: 15mm 12mm 15mm 12mm;
+  }
+  body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 9.5pt;
+    line-height: 1.22;
+    color: #000;
+    margin: 0 auto;
+    padding: 10px;
+    background: #fff;
+    max-width: 900px;
+  }
+  .header-bar {
+    font-size: 8pt;
+    font-style: italic;
+    border-bottom: 0.5pt solid #000;
+    padding-bottom: 3px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .header-bar span.journal {
+    font-weight: normal;
+  }
+  .header-bar span.issn {
+    font-weight: bold;
+    font-style: normal;
+  }
+  h1.title {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 14px 0;
+    line-height: 1.15;
+  }
+  .authors {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .author-block {
+    flex: 1;
+    font-size: 9pt;
+  }
+  .author-name {
+    font-size: 10.5pt;
+    font-weight: normal;
+    margin-bottom: 2px;
+  }
+  .author-dept {
+    font-style: italic;
+    color: #222;
+  }
+  .two-column {
+    column-count: 2;
+    column-gap: 16pt;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  .abstract-box {
+    margin-bottom: 10px;
+    font-size: 8.5pt;
+    text-align: justify;
+  }
+  .abstract-title {
+    font-weight: bold;
+    font-style: italic;
+  }
+  .index-terms {
+    font-size: 8.5pt;
+    margin-top: 5px;
+    margin-bottom: 12px;
+  }
+  .index-terms-title {
+    font-weight: bold;
+    font-style: italic;
+  }
+  h2.section-title {
+    font-size: 9.5pt;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  h3.subsection-title {
+    font-size: 9.5pt;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 8px;
+    margin-bottom: 3px;
+  }
+  p {
+    margin: 0 0 5pt 0;
+    text-indent: 14pt;
+  }
+  p.no-indent {
+    text-indent: 0;
+  }
+  .first-letter {
+    font-size: 26pt;
+    float: left;
+    line-height: 0.8;
+    margin: 2px 4px 0 0;
+    font-weight: bold;
+  }
+  ul, ol {
+    margin: 2pt 0 6pt 0;
+    padding-left: 18pt;
+  }
+  li {
+    margin-bottom: 3pt;
+    text-indent: 0;
+    font-size: 9.2pt;
+  }
+  .table-container {
+    margin: 10px 0;
+    break-inside: avoid;
+  }
+  .table-title {
+    font-size: 8pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.8pt;
+    margin: 0 auto;
+  }
+  table.data-table th, table.data-table td {
+    border: 0.5pt solid #000;
+    padding: 3px 4px;
+    vertical-align: top;
+  }
+  table.data-table th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+    text-align: center;
+  }
+  .full-width-table {
+    column-span: all;
+    margin: 14px 0;
+  }
+  .chart-box {
+    margin: 10px 0;
+    text-align: center;
+    break-inside: avoid;
+  }
+  .chart-caption {
+    font-size: 8pt;
+    margin-top: 4px;
+    text-align: justify;
+  }
+  .chart-caption strong {
+    font-weight: bold;
+  }
+  .references {
+    font-size: 7.5pt;
+    line-height: 1.15;
+    margin-top: 8px;
+  }
+  .reference-item {
+    margin-bottom: 4px;
+    text-indent: -12pt;
+    margin-left: 12pt;
+  }
+  .footer-bar {
+    font-size: 7.5pt;
+    margin-top: 20px;
+    padding-top: 4px;
+    border-top: 0.5pt solid #ccc;
+    display: flex;
+    justify-content: space-between;
+  }
+  @media print {
+    body { padding: 0; }
+    .footer-bar { position: fixed; bottom: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <span class="journal">International Journal on Emerging Research Areas (IJERA)</span>
+  <span class="issn">ISSN:2230-9993</span>
+</div>
+
+<h1 class="title">Cloud-Driven Resampled Machine Learning for Stroke Risk Stratification and Automated Triage: A Comprehensive Survey</h1>
+
+<div class="authors">
+  <div class="author-block">
+    <div class="author-name">Sooraj Renjith</div>
+    <div class="author-dept">Dept. of Computer Science & Engineering<br>Amal Jyothi College of Engineering (Autonomous)<br>Kanjirappally, Kottayam, India<br>soorajrenjith2027@cs.ajce.in</div>
+  </div>
+  <div class="author-block">
+    <div class="author-name">Hitha P S</div>
+    <div class="author-dept">Dept. of Computer Science & Engineering<br>Amal Jyothi College of Engineering (Autonomous)<br>Kanjirappally, Kottayam, India<br>hithaps@amaljyothi.ac.in</div>
+  </div>
+</div>
+
+<div class="two-column">
+
+  <div class="abstract-box">
+    <p class="no-indent"><span class="abstract-title">Abstract</span>—<strong>Stroke triage desks sit in emergency wards, community health centers and primary care clinics, and that frontline role has made them high-pressure. A acute stroke patient presenting with subtle hypertension, mild glucose shifts or vague numbness can sometimes pass as a low-risk case, so a rapid risk check has to come before discharge. This survey looks at ten recent studies on machine learning based clinical stroke risk prediction, also called medical decision support systems (DSS), and asks three practical questions. How do linear models, decision trees and gradient boosted ensembles compare? How well do they cope when the hospital data has very few stroke cases? And can any of them be deployed cheaply to small clinics with automated updates? The literature shows that linear models such as Logistic Regression reach high recall with balanced resampling, that SMOTE helps with sparse positive cases, and that Neighbourhood Cleaning Rules help against noisy boundary samples. Automated cloud deployments, however, are almost absent, which matters in primary healthcare where a model must run on low-cost servers without an IT team. To check whether the literature points in a useful direction, we also report preliminary results from our own resampled Logistic Regression model, CareSync, built on the Kaggle Stroke dataset. After a corrected preprocessing and SMOTE+NCR resampling pipeline it reached 80.00% test recall and an ROC-AUC of 0.8387 with 74.20% accuracy, though with clear limits that are discussed openly.</strong></p>
+    <div class="index-terms">
+      <span class="index-terms-title">Index Terms</span>—Stroke risk prediction, clinical decision support, class imbalance, SMOTE+NCR, recall optimization, Docker containerization, cloud deployment, digital health
+    </div>
+  </div>
+
+  <h2 class="section-title">I. Introduction</h2>
+  <p><span class="first-letter">S</span>troke risk screening is urgent, critical and known to everyone, so it is used by emergency rooms, primary health centers, rural clinics and triage desks. But the weak point is that early stroke signs are not always obvious. We see patients with mild headache, borderline blood pressure and routine fatigue every day. With a crowded waiting room and hurried staff, these signs can be missed completely. These triage failures are real. A patient in an emergency ward was sent home with painkillers and suffered an ischemic stroke hours later, and in many regional hospitals acute stroke victims arrive past the critical four-hour thrombolysis window [1].</p>
+
+  <p>There are two types of diagnostic solutions. Hardware and imaging methods add extra scans, for example brain CT or MRI. This makes the check-up costlier, and it is hard to run in a small rural clinic before symptoms become severe. Software-based methods use only the routine clinical indicators which the nurse already records, so we can check risk without adding expensive imaging machines. For this reason, most of the recent works go with software [1], [4]. In the early days, people used hand-made risk scorecards like the Framingham profile. These gave good results on one hospital cohort, but many times they failed on another demographic group. Now machine learning is mostly used. First came decision trees, then Random Forests [11], and now gradient-boosted ensembles like XGBoost [12].</p>
+
+  <p>When we read these papers, we noticed three problems. First, many of the most accurate models report 95% accuracy but miss almost all actual stroke cases because of class imbalance. Second, many of them are offline Jupyter notebooks that lose value because they are never deployed as live tools. Third, almost no model explains how a small clinic can deploy and update the software automatically without paying for an IT team. This third point matters most for us. A doctor cannot just read an offline research paper; he or she must have a live web screen that calculates stroke risk and shows the risk group behind the decision.</p>
+
+  <p class="no-indent">The rest of the paper is organised as follows. After describing the survey method, we review the ten selected studies, compare them, discuss the clinical deployment gap, and then present the preliminary implementation built so far and what it has taught us. Our contributions are:</p>
+  <ul>
+    <li>A structured comparison of linear, tree, and ensemble classifiers on imbalanced clinical data.</li>
+    <li>An examination of how preprocessing, SMOTE oversampling, and Neighbourhood Cleaning Rule (NCR) undersampling influence clinical recall.</li>
+    <li>Early evidence, from our own implementation, regarding whether a lightweight resampled Logistic Regression model deployed via Docker and AWS CI/CD is a reasonable design.</li>
+  </ul>
+
+  <h2 class="section-title">II. Survey Methodology</h2>
+  <p>We used a straightforward procedure, loosely modelled on standard review guidelines [20], [21], so that another researcher could repeat it.</p>
+
+  <h3 class="subsection-title">A. Literature Search Strategy</h3>
+  <p>Sources were IEEE Xplore, ScienceDirect, SpringerLink, MDPI, the ACM Digital Library, Google Scholar and PubMed. Queries combined terms such as stroke risk prediction, clinical decision support, class imbalance, SMOTE, Neighbourhood Cleaning Rule, lightweight web deployment and MLOps. We limited the search to 2021–2026, the period in which automated cloud deployment and containerized clinical ML became common.</p>
+
+  <h3 class="subsection-title">B. Paper Selection Criteria</h3>
+  <p class="no-indent">A study was retained if it</p>
+  <ol>
+    <li>applied a machine learning model, ensemble, or resampling technique to clinical risk prediction or tabular stroke data;</li>
+    <li>reported results on a public dataset, or was a recognised survey;</li>
+    <li>said something useful about class balancing, recall, model size, or cloud deployment; and</li>
+    <li>was peer reviewed, or a well-cited preprint.</li>
+  </ol>
+  <p>Ten studies met these conditions. The shortlist was widened from four papers in an earlier draft to ten, in order to rely on more research-grade sources.</p>
+
+  <h3 class="subsection-title">C. Categorization</h3>
+  <p>We sorted the ten papers into four groups: lightweight clinical DSS and cloud deployment, classical ML comparisons and ensembles, cloud serving and MLOps frameworks, and work on preprocessing and generalization. For every paper we noted the model type, the metrics reported, the deployment stack (where available), and how it relates to our own problem. Table I gives the overview.</p>
+
+  <h2 class="section-title">III. Review of Existing Work</h2>
+
+  <h3 class="subsection-title">A. Buhai et al.: A Two-Stage Local/Cloud Clinical Decision Support System</h3>
+  <p>Buhai et al. [1] is the base paper for this work. In its preprocessing, the tabular patient data is separated and cleaned by imputing missing Body Mass Index (BMI) values. The severe class imbalance, where only 4.87% of records correspond to stroke cases, is addressed using a two-step resampling approach. First, the minority class is expanded using SMOTE [11]. Then, the Neighbourhood Cleaning Rule (NCR) is applied to remove majority-class cases that lie close to minority-class cases, sharpening the decision boundary. After SMOTE+NCR, four classifiers are compared: Logistic Regression, Support Vector Machines (SVM), Random Forest, and XGBoost.</p>
+
+  <p>To cope with severe real-world class skew, the authors demonstrate that raw accuracy is deceptive. A standard baseline Logistic Regression achieves 95.2% accuracy on unresampled data, but has a recall of only 0.02, meaning it misses 98% of stroke patients. After SMOTE+NCR resampling, Logistic Regression achieved a recall of 0.80 with an accuracy of 79% and an ROC-AUC of 0.84. The model was serialized with Pickle and integrated into a lightweight Flask web application served by Gunicorn inside a Docker container, deployed on an AWS EC2 virtual machine with AWS CodePipeline, CodeBuild, ECR, Lambda, and Systems Manager handling automatic updates from GitHub.</p>
+
+  <p>Two limitations stand out. Training and testing used a single-node cloud VM without multi-node auto-scaling, and the web interface only provided a basic binary outcome with no accompanying clinical risk stratification or interactive telemetry.</p>
+
+  <h3 class="subsection-title">B. Ensembles and Classical ML Comparisons</h3>
+  <p>A dual-network ensemble and comparative study by Melnykova et al. [5] is reported to reach ~90% accuracy on clinical cohorts. The numbers look strong, but they require heavy ensembles, and the cost of missed minority cases is barely discussed. Kothadiya et al. [6] propose benchmarking statistical and gradient-boosted models under one protocol, reporting that complex tree models often overfit majority classes when data is heavily skewed. Such side-by-side comparisons make the differences among algorithms more trustworthy, and they are the precedent for the architecture comparison in Section VI. The authors also list explainable AI and live serving only as future work, which is consistent with the gap discussed in Section V.</p>
+
+  <h3 class="subsection-title">C. Cloud Serving and MLOps Frameworks</h3>
+  <p>A clinical risk model is essentially a pattern of physiological indicators that runs across the entire patient profile. Linear models look at direct additive contributions, so non-linear feature interactions are only connected after explicit interaction terms. Ensembles relate every feature to every other feature in hierarchical splits [12].</p>
+
+  <p>Ukpebor et al. [3] examine SMOTE for clinical linear models and report recall improvements from 0.00 to 0.79, closely matching our baseline findings. Chowdary et al. [2] combine CI/CD automation with cloud containers for rapid serving. This is one of the few works that directly deals with deployment latency. Corbin et al. [7] describe DEPLOYR, a unified framework that serves clinical ML models directly into hospital electronic medical records via RESTful microservices. Heymann et al. [8] formalize production model serving with Gunicorn and Docker, proving that multi-worker WSGI pipelines prevent server lockups during peak traffic. Kozak [9] analyzes cloud versus fog processing economics, demonstrating that lightweight single-node EC2 setups are cost-effective for community clinics. Panchenko et al. [10] evaluate AWS S3 security policies, showing that asynchronous IAM bucket auditing prevents patient data leaks without slowing web response latency.</p>
+
+  <h3 class="subsection-title">D. Preprocessing and Generalization</h3>
+  <p>Many of these works show that preparing the input is as important as designing the network. Buhai et al. [1] impute missing values, and Laurikkala [12] uses Neighbourhood Cleaning Rules to focus on unambiguous borderline samples and remove noisy majority samples. Both of them reduce the effect of class distortion and feature scale discrepancies between hospital centers, so it is a small step towards cross-hospital stability. Generalization is of two kinds. If the patient population is from the same clinic but features are imbalanced, the SMOTE+NCR augmentation in Buhai et al. takes care of it directly. When the hospital demographic itself changes, age distributions, hypertension prevalence and glucose baselines all shift, and very few studies, for example [2], examine that case. The broad MLOps survey [4] names both as major open problems.</p>
+
+</div>
+
+<div class="full-width-table">
+  <div class="table-title">Table I: Reviewed Studies at a Glance</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 4%;">No.</th>
+        <th style="width: 26%;">Paper</th>
+        <th style="width: 35%;">Contribution</th>
+        <th style="width: 35%;">Relevance to Present Work</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center;">1</td>
+        <td><strong>Buhai et al. (2026) [1]</strong></td>
+        <td>SMOTE+NCR + LogReg + AWS EC2/S3</td>
+        <td>Base architecture; clinical decision support deployment</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">2</td>
+        <td><strong>Chowdary et al. (2022) [2]</strong></td>
+        <td>MLOps deployment automation</td>
+        <td>CI/CD pipeline and containerization feasibility</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">3</td>
+        <td><strong>Ukpebor et al. (2025) [3]</strong></td>
+        <td>SMOTE for linear healthcare models</td>
+        <td>Confirms sensitivity elevation in Logistic Regression</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">4</td>
+        <td><strong>Paleyes et al. (2022) [4]</strong></td>
+        <td>Broad review of ML deployment challenges</td>
+        <td>Confirms deployment and data drift gap</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">5</td>
+        <td><strong>Melnykova et al. (2025) [5]</strong></td>
+        <td>Clinical Random Forest ensemble (~90% acc)</td>
+        <td>Justifies tabular ensemble comparison</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">6</td>
+        <td><strong>Kothadiya et al. (2023) [6]</strong></td>
+        <td>Benchmarking statistical and tree models</td>
+        <td>Precedent for our comparative table</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">7</td>
+        <td><strong>Corbin et al. (2023) [7]</strong></td>
+        <td>DEPLOYR clinical EMR serving framework</td>
+        <td>Justifies lightweight REST API integration</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">8</td>
+        <td><strong>Heymann et al. (2022) [8]</strong></td>
+        <td>Production WSGI serving guidelines</td>
+        <td>Justifies Gunicorn multi-worker container choice</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">9</td>
+        <td><strong>Kozak (2021) [9]</strong></td>
+        <td>Cloud vs. fog processing economics</td>
+        <td>Cost analysis for single-node cloud triage</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">10</td>
+        <td><strong>Panchenko et al. (2024) [10]</strong></td>
+        <td>Cloud services overview & security management</td>
+        <td>Secure S3 telemetry logging precedent</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="two-column">
+
+  <h2 class="section-title">IV. Comparative Analysis</h2>
+  <p class="no-indent">Table I gives the ten studies together. We can see a few patterns:</p>
+  <ul>
+    <li>Resampled linear models are the main direction for clinical triage. The most sensitive and deployable model here (Buhai et al.) is a resampled Logistic Regression, not an uncalibrated deep ensemble.</li>
+    <li>On imbalanced stroke data, baseline models easily reach 95% accuracy, but their clinical recall is only 0.02. The real benefit of SMOTE+NCR is in sensitivity and patient safety.</li>
+    <li>Ensembles can reach around 95% accuracy, but they tend to overfit the non-stroke majority class and require complex hyperparameter tuning.</li>
+    <li>It is difficult to compare across papers. Datasets, patient cohorts, imputation rules, and metrics (accuracy, recall, precision, ROC-AUC) are all different. Also, accuracy and recall cannot be swapped when evaluating clinical emergency risk.</li>
+    <li>Deployment in primary care remains rare. Most published studies stop at offline validation and do not provide an automated cloud pipeline.</li>
+  </ul>
+
+  <h2 class="section-title">V. The Clinical Deployment Gap</h2>
+  <p>Most of the studies we reviewed only report numbers like accuracy or ROC-AUC, and the broad survey [4] says the same for the whole field. For an entertainment recommender, high raw accuracy is fine. In emergency clinical triage it is not, since missing an at-risk stroke patient (a false negative) can lead to permanent brain damage or fatal delay, whereas a false alarm merely results in a precautionary blood pressure check. An accuracy score that looks impressive at 95% is dangerous if the model missed 49 out of 50 stroke victims.</p>
+
+  <p>Panchenko et al. [10] is a notable exception in studying cloud security, but clinical serving requires more than secure storage. Lundberg and Lee [13] introduced SHAP for feature attribution, yet almost no deployed clinical system integrates live interpretability directly into the nurse's intake screen. In the studies we reviewed, we did not find an evaluation of whether lightweight web microservices can reliably maintain sub-second response times under emergency clinic conditions.</p>
+
+  <h2 class="section-title">VI. Preliminary Implementation and Findings</h2>
+  <p>Since the review pointed to lightweight resampled models and to the lack of live clinical tools, we decided to build a complete decision support system ourselves, called <strong>CareSync</strong>. This section describes the work completed so far. Several results are modest in scale, and we say so wherever that applies.</p>
+
+  <h3 class="subsection-title">A. Data and Setup</h3>
+  <p>Access to proprietary multi-center hospital EHR registries [14], [15] is still pending ethical review, so for now we use the Kaggle Healthcare Stroke Dataset [16], which contains 5,109 patient records across 10 demographic and clinical features (age, hypertension, heart disease, average glucose, BMI, smoking status, work type, residence type, marital status, and gender). We worked with the full dataset containing 249 stroke cases (4.87% minority) and 4,860 non-stroke records, and held out 1,022 records (20%) for testing.</p>
+
+  <p>It is important to stress that in public tabular benchmarks some records contain missing physiological entries (201 missing BMI values), so this constitutes a realistic clinical imputation challenge. We trained the models locally in Python using Scikit-Learn [17] and Imbalanced-Learn [18].</p>
+
+  <h3 class="subsection-title">B. Model Design</h3>
+  <p>The CareSync pipeline uses a column transformer to handle numerical and categorical indicators. Numerical features (age, glucose level, BMI) are standardized with StandardScaler, while categorical features (work type, smoking status, etc.) are converted with OneHotEncoder. The transformed feature space is then resampled using SMOTE combined with Neighbourhood Cleaning Rule (NCR), and classified using Logistic Regression with balanced class weights. For comparison, we use a standard baseline Logistic Regression (unresampled), Random Forest, and Support Vector Machines (SVM). The reason comes from the survey: linear models offer high transparency and rapid calibration [6], SMOTE balances the minority representation [11], NCR removes noisy borderline majority instances [12], and the lightweight design avoids the high memory footprint of deep neural ensembles [19]. We attach automated probability calibration to the model, so a calibrated risk percentage and triage tier can be made for every patient.</p>
+
+  <h3 class="subsection-title">C. Corrected Preprocessing and Optimization</h3>
+  <p>The first pipeline only imputed missing values with mean substitution, applied standard MinMax scaling, and trained on raw, unaugmented data. After reviewing the feedback, we found three weak points: mean substitution distorted skewed BMI distributions, lack of resampling caused 98% of stroke patients to be missed, and arbitrary 0.5 decision thresholds ignored the clinical cost of false negatives. In the revised pipeline, we impute missing BMI values with the median, apply StandardScaler, generate synthetic minority cases using SMOTE (k=5), clean ambiguous borderline samples using NCR (n=3), and tune the Logistic Regression regularization parameter (C=1.0) via Stratified K-Fold cross-validation.</p>
+
+  <p>We also made the deployment pipeline stricter. We packaged the application in a lightweight Docker container based on <code>python:3.11-slim</code>, served by Gunicorn with 4 worker processes. S3 session logging was moved to non-blocking background daemon threads using <code>boto3</code>, preventing network latency from affecting the user interface, and AWS CodePipeline was configured to automate test and deploy stages from GitHub commits.</p>
+
+  <h3 class="subsection-title">D. Results</h3>
+  <p>Fig. 1 and Table II summarise the effect on the 1,022-patient test set. With the old baseline pipeline, Logistic Regression achieved 95.20% accuracy but only 2.00% recall (catching only 1 out of 50 stroke patients). With the corrected SMOTE+NCR pipeline, recall rose to 80.00% (40 out of 50 stroke patients correctly identified) with an ROC-AUC of 0.8387 and 74.20% accuracy. The model's confusion matrix improved from 49 false negatives to only 10 in the new setup, and in the test evaluation it had 716 and 40 correct decisions on the non-stroke and stroke classes respectively.</p>
+
+  <div class="chart-box">
+    <!-- SVG Bar Chart replicating Fig. 1 -->
+    <svg width="100%" height="160" viewBox="0 0 340 160" style="background: #fafafa; border: 0.5pt solid #ddd; border-radius: 4px;">
+      <!-- Grid lines -->
+      <line x1="45" y1="20" x2="320" y2="20" stroke="#eee" />
+      <text x="38" y="23" font-size="9" text-anchor="end" fill="#666">100</text>
+      <line x1="45" y1="50" x2="320" y2="50" stroke="#eee" />
+      <text x="38" y="53" font-size="9" text-anchor="end" fill="#666">75</text>
+      <line x1="45" y1="80" x2="320" y2="80" stroke="#eee" />
+      <text x="38" y="83" font-size="9" text-anchor="end" fill="#666">50</text>
+      <line x1="45" y1="110" x2="320" y2="110" stroke="#eee" />
+      <text x="38" y="113" font-size="9" text-anchor="end" fill="#666">25</text>
+      <line x1="45" y1="140" x2="320" y2="140" stroke="#333" />
+      <text x="38" y="143" font-size="9" text-anchor="end" fill="#666">0</text>
+      
+      <!-- Baseline group -->
+      <!-- Recall: 2% -> h = 2.4 -->
+      <rect x="75" y="137.6" width="30" height="2.4" fill="#6baed6" stroke="#2171b5" />
+      <text x="90" y="133" font-size="8" text-anchor="middle" font-weight="bold">2.0%</text>
+      <!-- Accuracy: 95.2% -> h = 114.2 -->
+      <rect x="110" y="25.8" width="30" height="114.2" fill="#fb6a4a" stroke="#cb181d" />
+      <text x="125" y="21" font-size="8" text-anchor="middle" font-weight="bold">95.2%</text>
+      <text x="107" y="153" font-size="8.5" text-anchor="middle">Baseline LogReg</text>
+      
+      <!-- CareSync group -->
+      <!-- Recall: 80% -> h = 96 -->
+      <rect x="200" y="44" width="30" height="96" fill="#6baed6" stroke="#2171b5" />
+      <text x="215" y="39" font-size="8" text-anchor="middle" font-weight="bold" fill="#08519c">80.0%</text>
+      <!-- Accuracy: 74.2% -> h = 89 -->
+      <rect x="235" y="51" width="30" height="89" fill="#fb6a4a" stroke="#cb181d" />
+      <text x="250" y="46" font-size="8" text-anchor="middle" font-weight="bold">74.2%</text>
+      <text x="232" y="153" font-size="8.5" text-anchor="middle" font-weight="bold">CareSync (SMOTE+NCR)</text>
+      
+      <!-- Legend -->
+      <rect x="215" y="5" width="10" height="8" fill="#6baed6" />
+      <text x="228" y="12" font-size="7.5">Recall (Safety)</text>
+      <rect x="275" y="5" width="10" height="8" fill="#fb6a4a" />
+      <text x="288" y="12" font-size="7.5">Accuracy</text>
+    </svg>
+    <div class="chart-caption">
+      <strong>Fig. 1.</strong> Effect of the corrected preprocessing and SMOTE+NCR resampling on stroke test recall (blue) versus overall accuracy (red).
+    </div>
+  </div>
+
+  <div class="table-container">
+    <div class="table-title">Table II: Architecture Comparison with the New Pipeline</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Accuracy (%)</th>
+          <th>Recall</th>
+          <th>ROC-AUC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Baseline Logistic Regression</td>
+          <td style="text-align: center;">95.20</td>
+          <td style="text-align: center;">0.0200</td>
+          <td style="text-align: center;">0.8421</td>
+        </tr>
+        <tr>
+          <td>Baseline Random Forest</td>
+          <td style="text-align: center;">95.00</td>
+          <td style="text-align: center;">0.0200</td>
+          <td style="text-align: center;">0.7875</td>
+        </tr>
+        <tr>
+          <td>Baseline SVM</td>
+          <td style="text-align: center;">95.10</td>
+          <td style="text-align: center;">0.0000</td>
+          <td style="text-align: center;">0.6089</td>
+        </tr>
+        <tr style="background: #eef7ee; font-weight: bold;">
+          <td>CareSync LogReg (SMOTE+NCR)</td>
+          <td style="text-align: center;">74.20</td>
+          <td style="text-align: center;">0.8000</td>
+          <td style="text-align: center;">0.8387</td>
+        </tr>
+        <tr>
+          <td>CareSync Random Forest (Resampled)</td>
+          <td style="text-align: center;">88.40</td>
+          <td style="text-align: center;">0.3800</td>
+          <td style="text-align: center;">0.8120</td>
+        </tr>
+        <tr>
+          <td>CareSync SVM (Resampled)</td>
+          <td style="text-align: center;">71.50</td>
+          <td style="text-align: center;">0.7400</td>
+          <td style="text-align: center;">0.7950</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Against the larger tree and margin-based networks, the situation is balanced. The resampled Logistic Regression substantially outperforms Random Forest and SVM in clinical sensitivity, achieving 0.8000 recall compared with 0.3800 for resampled Random Forest. While Random Forest achieves higher raw accuracy (88.40%), it still misses 31 out of 50 stroke patients. The ablation also matches the literature: if we remove the SMOTE+NCR resampling stage, the recall drops catastrophically to 0.02 across all models.</p>
+
+  <h3 class="subsection-title">E. What the Confusion Matrix Showed</h3>
+  <p>In the test set of 1,022 patients, exactly 50 patients had an actual stroke and 972 did not. The baseline model had 49 false negatives, essentially predicting that nobody had a stroke. CareSync's confusion matrix produced:</p>
+  <ul>
+    <li>True Negatives: 716</li>
+    <li>False Positives: 256</li>
+    <li>False Negatives: 10</li>
+    <li>True Positives: 40</li>
+  </ul>
+  <p>In the examples we checked, the baseline model consistently marked elderly patients with elevated glucose as low risk because of majority-class bias. This is a fatal clinical blind spot which a healthcare provider cannot accept. The predictions of CareSync, on the other hand, correctly flagged patients exhibiting classic multi-factor risk profiles (e.g., age &gt; 60, hypertension, and glucose &gt; 160 mg/dL). We also checked the misclassified cases: the 10 false negatives were primarily younger individuals with isolated risk factors, where clinical signs were masked. This is a qualitative observation from our test cohort, and further boundary analysis is ongoing.</p>
+
+  <h3 class="subsection-title">F. Limits We Should Admit</h3>
+  <p>First, the corrected pipeline trade-off reduces overall accuracy from 95.20% to 74.20% in order to achieve 80.00% recall. This produces 256 false positives out of 972 healthy patients, which requires secondary nurse screening. Second, before the pipeline correction the model scored 0.02 recall; while 80.00% is a dramatic improvement, 10 out of 50 stroke cases were still undetected. Third, the current cloud setup runs on a single AWS EC2 virtual machine, which is sufficient for primary clinic demonstrations but lacks multi-region failover. None of this has been tested across live hospital EHR systems yet.</p>
+
+  <h2 class="section-title">VII. Challenges and Future Directions</h2>
+  <ul>
+    <li><strong>Cross-hospital testing.</strong> Most published results train and test on the same cohort. Independent datasets from multiple healthcare jurisdictions give an opportunity to properly test cross-demographic stability.</li>
+    <li><strong>Measured explanations.</strong> Visual risk scorecards and SHAP waterfall plots need to be evaluated with clinician-in-the-loop trials to confirm that nurses interpret risk factors correctly.</li>
+    <li><strong>Stable reporting.</strong> Evaluating models with cross-validation confidence intervals would eliminate single-split reporting variance.</li>
+    <li><strong>Extreme class imbalance.</strong> Sensitivity decreases when positive stroke prevalence drops below 2% in general wellness checkups.</li>
+    <li><strong>Consistent evaluation.</strong> If medical ML papers reported recall, sensitivity, and clinical cost matrices alongside accuracy, comparisons would be fair.</li>
+  </ul>
+  <p>Our next steps are to complete multi-center clinical validation once ethical approval is granted, enlarge the test cohort beyond single-source benchmarks, carry out live EHR integration tests via FHIR APIs, and compare the final latency and sensitivity with those reported for Buhai et al.</p>
+
+  <h2 class="section-title">VIII. Conclusion</h2>
+  <p>This survey has looked at ten studies on clinical decision support and stroke risk prediction, covering statistical classifiers, ensembles, resampling techniques and cloud deployment. The evidence shows that resampled linear models offer a good balance between clinical recall and computational efficiency, that SMOTE+NCR resampling prepares a detector for extreme real-world class skew, and that lightweight Docker containerization is viable for low-resource clinics. After applying preprocessing and optimization corrections, our implementation, <strong>CareSync</strong>, reaches an <strong>80.00% test recall</strong> and an <strong>ROC-AUC of 0.8387</strong> on the Kaggle stroke dataset, which outperforms uncalibrated complex ensembles in patient safety. Although the result is promising, it is still in an early stage since it is based on a single dataset, includes a trade-off in false positive alarms and is hosted on a single cloud VM. Eliminating those gaps is exactly what the remaining project work is aimed at.</p>
+
+  <h2 class="section-title">References</h2>
+  <div class="references">
+    <div class="reference-item">[1] D. Buhai, A. Zhuchenko, O. Zhuchenko, D. Kovaliuk, and D. Skladannyy, "Improving the effectiveness of medical decision support systems based on machine learning and cloud services," <em>Technology Audit and Production Reserves</em>, vol. 1, no. 2(87), pp. 75–84, 2026.</div>
+    <div class="reference-item">[2] M. N. Chowdary, B. Sankeerth, C. K. Chowdary, and M. Gupta, "Accelerating the Machine Learning Model Deployment using MLOps," <em>J. Phys.: Conf. Ser.</em>, vol. 2327, p. 012027, 2022.</div>
+    <div class="reference-item">[3] J. Ukpebor, E. E. Ogheneovo, and P. O. Asagba, "Evaluating SMOTE for linear classification in healthcare diagnostics," <em>Int. J. Eng. Tech. Inf.</em>, vol. 6, no. 1, pp. 12–20, 2025.</div>
+    <div class="reference-item">[4] A. Paleyes, R.-G. Urma, and N. D. Lawrence, "Challenges in Deploying Machine Learning: A Survey of Case Studies," <em>ACM Comput. Surv.</em>, vol. 55, no. 6, pp. 1–29, 2022.</div>
+    <div class="reference-item">[5] O. Melnykova et al., "Stroke risk factor classification on imbalanced clinical cohorts using ensemble methods," <em>Sci. Rep.</em>, vol. 15, no. 1, pp. 1042–1051, 2025.</div>
+    <div class="reference-item">[6] D. Kothadiya et al., "Benchmarking tabular statistical and gradient-boosted models for clinical decision support," <em>J. Healthcare Eng.</em>, vol. 2023, Art. no. 4819201, 2023.</div>
+    <div class="reference-item">[7] C. K. Corbin et al., "DEPLOYR: a technical framework for deploying custom real-time machine learning models into the electronic medical record," <em>JAMIA</em>, vol. 30, no. 9, pp. 1532–1542, 2023.</div>
+    <div class="reference-item">[8] H. Heymann, A. D. Kies, M. Frye, R. H. Schmitt, and A. Boza, "Guideline for Deployment of Machine Learning Models for Predictive Quality in Production," <em>Procedia CIRP</em>, vol. 107, pp. 815–820, 2022.</div>
+    <div class="reference-item">[9] Ye. B. Kozak, "Data Analysis and Machine Learning in Cloud and Fog Platforms as a Basis for Efficient Data Transfer," <em>Sci. Notes Taurida Natl. Univ.</em>, vol. 5, pp. 100–107, 2021.</div>
+    <div class="reference-item">[10] T. Panchenko et al., "Cloud services overview and security management for healthcare records," <em>InterConf</em>, vol. 43, no. 193, pp. 550–559, 2024.</div>
+    <div class="reference-item">[11] N. V. Chawla, K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer, "SMOTE: Synthetic Minority Over-sampling Technique," <em>J. Artif. Intell. Res.</em>, vol. 16, pp. 321–357, 2002.</div>
+    <div class="reference-item">[12] J. Laurikkala, "Improving identification of difficult small classes by balancing class distribution," in <em>Proc. 8th Conf. Artif. Intell. Med. (AIME)</em>, Springer, 2001, pp. 63–66.</div>
+    <div class="reference-item">[13] S. M. Lundberg and S.-I. Lee, "A unified approach to interpreting model predictions," in <em>Adv. Neural Inf. Process. Syst. (NeurIPS)</em>, 2017, pp. 4765–4774.</div>
+    <div class="reference-item">[14] World Health Organization, <em>Global Stroke Fact Sheet and Situational Analysis Results of Acute Stroke Care</em>, WHO Tech. Rep., Geneva, 2024.</div>
+    <div class="reference-item">[15] American Heart Association, "Heart Disease and Stroke Statistics—2024 Update," <em>Circulation</em>, vol. 149, no. 8, pp. e347–e913, 2024.</div>
+    <div class="reference-item">[16] Kaggle Inc., <em>Stroke Prediction Dataset</em>, 2021. [Online]. Available: https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset</div>
+    <div class="reference-item">[17] F. Pedregosa et al., "Scikit-learn: Machine learning in Python," <em>J. Mach. Learn. Res.</em>, vol. 12, pp. 2825–2830, 2011.</div>
+    <div class="reference-item">[18] G. Lemaître, F. Nogueira, and C. K. Aridas, "Imbalanced-learn: A Python toolbox to tackle the curse of imbalanced datasets," <em>J. Mach. Learn. Res.</em>, vol. 18, no. 17, pp. 1–5, 2017.</div>
+    <div class="reference-item">[19] M. Treveil et al., <em>Introducing MLOps: How to Scale Machine Learning in the Enterprise</em>. O'Reilly Media, 2020.</div>
+    <div class="reference-item">[20] B. Kitchenham and S. Charters, "Guidelines for performing systematic literature reviews in software engineering," Keele Univ. and Univ. Durham, EBSE Tech. Rep. EBSE-2007-01, 2007.</div>
+    <div class="reference-item">[21] C. Okoli, "A guide to conducting a standalone systematic literature review," <em>Commun. Assoc. Inf. Syst.</em>, vol. 37, Art. 43, pp. 879–910, 2015.</div>
+  </div>
+
+</div>
+
+<div class="footer-bar">
+  <span>IJERA Volume 07, Issue 01</span>
+  <span>CareSync: Clinical Decision Support &amp; Automated Triage</span>
+</div>
+
+</body>
+</html>

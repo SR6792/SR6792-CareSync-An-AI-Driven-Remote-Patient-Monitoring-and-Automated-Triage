@@ -10,13 +10,110 @@ const { spawn } = require('child_process');
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend files from current directory
-app.use(express.static(__dirname)); 
+let predictionWorker = null;
+let predictionOutput = '';
+const predictionRequests = [];
 
-// Explicitly send index.html for root path
+function rejectPendingPredictions(error) {
+    while (predictionRequests.length > 0) {
+        predictionRequests.shift().reject(error);
+    }
+}
+
+function startPredictionWorker() {
+    if (predictionWorker) {
+        return;
+    }
+
+    const worker = spawn(process.env.PYTHON_EXECUTABLE || 'python', [
+        path.join(__dirname, 'predict.py'),
+        '--worker'
+    ], { cwd: __dirname });
+    predictionWorker = worker;
+
+    worker.stdout.on('data', (chunk) => {
+        predictionOutput += chunk.toString();
+        let newlineIndex = predictionOutput.indexOf('\n');
+
+        while (newlineIndex !== -1) {
+            const line = predictionOutput.slice(0, newlineIndex);
+            predictionOutput = predictionOutput.slice(newlineIndex + 1);
+            newlineIndex = predictionOutput.indexOf('\n');
+
+            const request = predictionRequests.shift();
+            if (!request) {
+                console.error('Received an unexpected prediction response.');
+                continue;
+            }
+
+            try {
+                const result = JSON.parse(line);
+                if (result.error) {
+                    request.reject(new Error(result.error));
+                } else {
+                    request.resolve(result);
+                }
+            } catch (error) {
+                request.reject(new Error(`Invalid prediction response: ${error.message}`));
+            }
+        }
+    });
+
+    worker.stderr.on('data', (chunk) => {
+        console.error(`Prediction worker: ${chunk.toString().trim()}`);
+    });
+
+    worker.on('error', (error) => {
+        console.error('Could not start prediction worker:', error);
+        if (predictionWorker === worker) {
+            predictionWorker = null;
+            predictionOutput = '';
+        }
+        rejectPendingPredictions(error);
+    });
+
+    worker.on('close', (code, signal) => {
+        if (predictionWorker === worker) {
+            predictionWorker = null;
+            predictionOutput = '';
+        }
+        if (code !== 0) {
+            rejectPendingPredictions(new Error(`Prediction worker exited with code ${code ?? 'unknown'}${signal ? ` (${signal})` : ''}`));
+        } else {
+            rejectPendingPredictions(new Error('Prediction worker stopped unexpectedly'));
+        }
+    });
+}
+
+function requestPrediction(payload) {
+    startPredictionWorker();
+
+    return new Promise((resolve, reject) => {
+        predictionRequests.push({ resolve, reject });
+        try {
+            predictionWorker.stdin.write(`${JSON.stringify(payload)}\n`);
+        } catch (error) {
+            predictionRequests.pop();
+            reject(error);
+        }
+    });
+}
+
+// Launch the modern login screen by default and keep register screen available separately.
 app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "login.html"));
+});
+
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "login.html"));
+});
+
+app.get("/register", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
+
+// Serve static frontend files from current directory
+app.use(express.static(__dirname)); 
 
 //make an async function for db
 const connectToMongo = async () => {
@@ -81,38 +178,21 @@ app.post("/login",async(req,res)=>{
 
   }
 })
-// ML PART: Stroke Risk Prediction
-app.post('/api/predict', (req, res) => {
-  const payload = JSON.stringify(req.body || {});
-
-  // Execute predict.py with JSON payload as CLI argument
-  const pythonProcess = spawn('python', ['predict.py', payload]);
-
-  let resultData = '';
-  let errorData = '';
-
-  pythonProcess.stdout.on('data', (data) => {
-    resultData += data.toString();
-  });
-
-  pythonProcess.stderr.on('data', (data) => {
-    errorData += data.toString();
-  });
-
-  pythonProcess.on('close', (code) => {
-    if (code !== 0) {
-      console.error(`Python error: ${errorData}`);
-      return res.status(500).json({ error: "Prediction process failed", details: errorData });
-    }
-
+app.post('/api/predict', async (req, res) => {
     try {
-      const response = JSON.parse(resultData);
-      return res.status(200).json(response);
-    } catch (err) {
-      return res.status(500).json({ error: "Failed to parse prediction output" });
+        const result = await requestPrediction(req.body || {});
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error('Prediction error:', error);
+        return res.status(500).json({
+            error: 'Prediction process failed',
+            details: error.message
+        });
     }
-  });
 });
+
+startPredictionWorker();
+
 app.listen(PORT,() => {
     console.log(`Server is listening on http://localhost:${PORT}`);
 });
